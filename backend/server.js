@@ -59,8 +59,7 @@ app.use(express.urlencoded({ extended: true}));  //parsing form data
 
 
 app.get("/", (req, res) => {
-    console.log("hello");
-    res.send("hello friends");
+  res.redirect(302, allowedOrigins[0]);
 })
 
 app.get("/test", (req, res) => {

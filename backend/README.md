@@ -11,6 +11,7 @@ Admin credentials are server-only. Admin access is checked against the current d
 
 - Configure the same required variables in the backend host's secret/environment settings. Never put `ADMIN_PASSWORD`, `JWT_SECRET`, database credentials, Cloudinary secrets, or Razorpay secrets in frontend variables or commit a real `.env`.
 - Set `CORS_ORIGINS` to a comma-separated list of exact HTTPS storefront origins in production (no trailing slash). Production API requests from unlisted browser origins are rejected.
+- Visiting the backend root URL (`/`) redirects to the first origin in `CORS_ORIGINS`; `/test` remains the API health check.
 - Set `VITE_API_URL` in the frontend build environment to the deployed API URL ending in `/api`, then run `npm run build` from `frontend`.
 - Host the `frontend/dist` directory and configure the static host to serve `index.html` for client-side routes such as `/admin/products`.
 - Deploy MongoDB with network access restricted to the backend host and transaction support (MongoDB Atlas or a replica set). Order placement, payment confirmation, and cancellation use database transactions. Use a persistent database: the configured admin account is synchronized from environment settings on each API startup.
